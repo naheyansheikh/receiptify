@@ -5,9 +5,9 @@ import time
 from time import gmtime, strftime
 import os
 
-CLIENT_ID= os.environ.get('CLIENT_ID')
-CLIENT_SECRET= os.environ.get('CLIENT_SECRET')
-SECRET_KEY = os.environ.get('SECRET_KEY')
+CLIENT_ID = "5bbb6bb7c3034a19b54056c39a93c537"
+CLIENT_SECRET = "20617b8ab8a14eb68e632e6ce2b79522"
+SECRET_KEY = "20617b8ab8a14eb68e632e6ce2b79522"
 TOKEN_CODE = "token_info"
 MEDIUM_TERM = "medium_term"
 SHORT_TERM = "short_term"
@@ -103,3 +103,6 @@ def _jinja2_filter_miliseconds(time, fmt=None):
     if seconds < 10: 
         return str(minutes) + ":0" + str(seconds)
     return str(minutes) + ":" + str(seconds ) 
+
+if __name__ == "__main__":
+    app.run(debug=False, host='0.0.0.0')
