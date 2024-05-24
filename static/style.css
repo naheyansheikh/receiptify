@@ -21,13 +21,12 @@
     font-style: inherit;
 }
 
-
   body {
     font-family: 'MyCustomFont', sans-serif; /* Add a fallback font */
     font-size: 14px;
     line-height: 1.42857143;
-    color: #333;
-    background-color: #fff;
+    color: #fff;
+    background-color: #333;
 }
 
   .receiptContainer {
@@ -39,17 +38,41 @@
     text-transform: uppercase;
 }
 
+.artistReceiptContainer {
+  background-image: url(wrinkled-paper.jpg);
+  background-position: center;
+  width: 340px;
+  filter: brightness(110%);
+  padding: 20px;
+  text-transform: uppercase;
+}
+
 .logo {
   font-family: 'MyCustomFont', sans-serif; /* Add a fallback font */
   font-weight: 600;
   font-size: 2.3rem;
   text-align: center;
+  color:#333;
 }
 
-p, table, .date {
+.period {
+  color: #333; /* Change 'red' to any color you prefer */
+}
+
+table, .date {
   font-family: "receipt", "Courier New", Courier, monospace;
+  color:black;
   /* font-size: 2.1rem;
   line-height: 2rem; */
+}
+
+p {
+  font-family: "receipt", "Courier New", Courier, monospace;
+  color:#fff;
+}
+
+.thanks p {
+  color:black;
 }
 
 td {
@@ -100,4 +123,28 @@ table {
   border-radius: 10px;
   color: white;
   font-family: "Helvetica Neue", Helvetica, Geneva, Tahoma, sans-serif;
+}
+
+.customize-receipt {
+  font-size: 30px; /* Adjust as necessary */
+  line-height: 1.5;
+}
+
+.customize-receipt h2, .customize-receipt h3 {
+  font-size: 30px; /* Adjust as necessary */
+  margin-bottom: 10px;
+}
+
+.customize-receipt select, .customize-receipt button {
+  font-size: 16px; /* Adjust as necessary */
+  padding: 8px;
+  margin: 5px 0;
+}
+
+.customize-receipt label {
+  font-size: 16px; /* Adjust as necessary */
+}
+
+.customize-receipt p {
+  font-size: 18px; /* Adjust as necessary */
 }

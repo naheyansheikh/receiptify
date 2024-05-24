@@ -5,9 +5,9 @@ import time
 from time import gmtime, strftime
 import os
 
-CLIENT_ID = ""
-CLIENT_SECRET = ""
-SECRET_KEY = ""
+CLIENT_ID = "d7bb3dbe470741ef9e8c126d415edd39"
+CLIENT_SECRET = "af03f95ee43d417ba1f9e82fddc2712b"
+SECRET_KEY = "lskajdaskljd"
 TOKEN_CODE = "token_info"
 MEDIUM_TERM = "medium_term"
 SHORT_TERM = "short_term"
@@ -69,17 +69,34 @@ def getTracks():
     )
 
     current_user_name = sp.current_user()['display_name']
-    short_term = sp.current_user_top_tracks(
+    
+    track_short_term = sp.current_user_top_tracks(
         limit=10,
         offset=0,
         time_range=SHORT_TERM,
     )
-    medium_term = sp.current_user_top_tracks(
+    track_medium_term = sp.current_user_top_tracks(
         limit=10,
         offset=0,
         time_range=MEDIUM_TERM,
     )
-    long_term = sp.current_user_top_tracks(
+    track_long_term = sp.current_user_top_tracks(
+        limit=10,
+        offset=0,
+        time_range=LONG_TERM,
+    )
+    
+    artist_short_term = sp.current_user_top_artists(
+        limit=10,
+        offset=0,
+        time_range=SHORT_TERM,
+    )
+    artist_medium_term = sp.current_user_top_artists(
+        limit=10,
+        offset=0,
+        time_range=MEDIUM_TERM,
+    )
+    artist_long_term = sp.current_user_top_artists(
         limit=10,
         offset=0,
         time_range=LONG_TERM,
@@ -88,8 +105,12 @@ def getTracks():
     if os.path.exists(".cache"): 
         os.remove(".cache")
 
-    return render_template('receipt.html', user_display_name=current_user_name, short_term=short_term, medium_term=medium_term, long_term=long_term, currentTime=gmtime())
+    return render_template('receipt.html', user_display_name=current_user_name, track_short_term=track_short_term, track_medium_term=track_medium_term, track_long_term=track_long_term, currentTime=gmtime(),
+                           artist_short_term=artist_short_term, artist_medium_term=artist_medium_term, artist_long_term=artist_long_term)
 
+@app.template_filter('sum_popularity')
+def sum_popularity(artists):
+    return sum(artist['popularity'] for artist in artists)
 
 @app.template_filter('strftime')
 def _jinja2_filter_datetime(date, fmt=None):
@@ -105,4 +126,4 @@ def _jinja2_filter_miliseconds(time, fmt=None):
     return str(minutes) + ":" + str(seconds ) 
 
 if __name__ == "__main__":
-    app.run(debug=True, host='0.0.0.0')
+    app.run(debug=True)

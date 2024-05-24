@@ -9,21 +9,25 @@
 
 <body>
 
-    {% from "receiptContainer.html" import receiptContainer with context %}
+    {% from "receiptContainer.html" import receiptContainer, artistReceiptContainer with context %}
 
     <script>
-
         var activeReceipt;
 
-
         function showContent(id) {
-            // set all of the other ones to invisible
-            for (let i = 0; i < document.querySelectorAll(".receiptContainer").length; i++) {
-                document.querySelectorAll(".receiptContainer")[i].style.display = "none"
-            }
-            document.getElementById(id).style.display = 'inline-block'
-            document.getElementById('downloadPicButton').style.display = 'inline-block'
-            activeReceipt = id
+            // Hide all containers within tracks and artists sections
+            $('.receiptContainerWrapper').each(function() {
+                $(this).find('.receiptContainer').hide();
+            });
+        
+            // Show only the specified container
+            $('#' + id).show();
+        
+            // Update which receipt is active for download button
+            activeReceipt = id;
+        
+            // Make sure the download button is visible
+            $('#downloadPicButton').show();
         }
 
         function hiddenClone(element) {
@@ -42,7 +46,6 @@
         }
 
         $(document).ready(function () {
-
             // Global variable
             var element = $(".receiptContainerWrapper");
 
@@ -66,8 +69,37 @@
                 });
             });
 
+            // Update explanation text based on dropdown selection
+            $('#metric').on('change', function () {
+                updateExplanation();
+            });
+
+            // Initialize explanation
+            updateExplanation();
+
+           
         });
 
+        function updateExplanation() {
+            var metric = $('#metric').val();
+            var explanation = '';
+            if (metric === 'top_tracks') {
+                explanation = "QTY - The ranking of a track in your most played. The higher up on the list, the more played it is.<br>AMT - The length of a song.";
+                $('#tracksContainer').show();
+                $('#artistsContainer').hide();
+                $('#trackButtons').show();
+                $('#artistButtons').hide();
+                showContent('track_short_term_receipt');
+            } else if (metric === 'top_artists') {
+                explanation = "QTY - The ranking of an artist in your most played. The higher up on the list, the more played it is.<br>AMT - The popularity of an artist, from 0-100. 100 is the most popular, and 0 is the least popular.";
+                $('#artistsContainer').show();
+                $('#tracksContainer').hide();
+                $('#artistButtons').show();
+                $('#trackButtons').hide();
+                showContent('artist_short_term_receipt');
+            }
+            $('#explanation').html(explanation);
+        }
     </script>
 
     <div>
@@ -76,29 +108,56 @@
         </center>
     </div>
 
-
-    <div style="width: 100%; height: auto" class="buttons">
-        <center>
-            <div>
-                <button onclick="showContent('short_term_receipt')" class="generatePicButton">Last Month Receipt</button>
-                <button onclick="showContent('medium_term_receipt')" class="generatePicButton">Last 6 Months Receipt</button>
-                <button onclick="showContent('long_term_receipt')" class="generatePicButton">All Time Receipt</button>
+    <div style="width: 100%; height: auto; display: flex;">
+        <div style="flex: 1;">
+            <!-- Container for Top Tracks -->
+            <div class="receiptContainerWrapper" id="tracksContainer">
+                <center>
+                    {{ receiptContainer(user_display_name, track_short_term['items'], 'track_short_term_receipt', 'LAST MONTH') }}
+                    {{ receiptContainer(user_display_name, track_medium_term['items'], 'track_medium_term_receipt', 'LAST 6 MONTHS') }}
+                    {{ receiptContainer(user_display_name, track_long_term['items'], 'track_long_term_receipt', 'ALL TIME') }}
+                </center>
             </div>
-        </center>
+            <!-- Container for Top Artists -->
+            <div class="receiptContainerWrapper" id="artistsContainer" style="display:none;">
+                <center>
+                    {{ artistReceiptContainer(user_display_name, artist_short_term['items'], 'artist_short_term_receipt', 'LAST MONTH') }}
+                    {{ artistReceiptContainer(user_display_name, artist_medium_term['items'], 'artist_medium_term_receipt', 'LAST 6 MONTHS') }}
+                    {{ artistReceiptContainer(user_display_name, artist_long_term['items'], 'artist_long_term_receipt', 'ALL TIME') }}
+                </center>
+            </div>
+                <center>
+                    <button class="generatePicButton" id="downloadPicButton">Download</button>
+                </center>
+            </div>
+        <div style="flex: 1; padding: 20px;" class="customize-receipt">
+            <h2>Customize Receipt</h2>
+            <div>
+                <label for="metric">Metric:</label>
+                <select id="metric">
+                    <option value="top_tracks">Top Tracks</option>
+                    <option value="top_artists">Top Artists</option>
+                </select>
+            </div>
+            <div>
+                <h3>Time Period</h3>
+                <div id="trackButtons">
+                    <button onclick="showContent('track_short_term_receipt')" class="generatePicButton">Last Month</button>
+                    <button onclick="showContent('track_medium_term_receipt')" class="generatePicButton">Last 6 Months</button>
+                    <button onclick="showContent('track_long_term_receipt')" class="generatePicButton">All Time</button>
+                </div>
+                <div id="artistButtons" style="display: none;">
+                    <button onclick="showContent('artist_short_term_receipt')" class="generatePicButton">Last Month</button>
+                    <button onclick="showContent('artist_medium_term_receipt')" class="generatePicButton">Last 6 Months</button>
+                    <button onclick="showContent('artist_long_term_receipt')" class="generatePicButton">All Time</button>
+                </div>                
+            </div>
+            <div>
+                <h3>Receipt Explained</h3>
+                <p id="explanation"></p>
+            </div>
+        </div>
     </div>
-
-    <div style="width: 100%; height: auto" class="receiptContainerWrapper">
-        <center>
-            {{ receiptContainer(user_display_name, short_term['items'], 'short_term_receipt', 'LAST MONTH') }}
-            {{ receiptContainer(user_display_name, medium_term['items'], 'medium_term_receipt', 'LAST 6 MONTHS') }}
-            {{ receiptContainer(user_display_name, long_term['items'], 'long_term_receipt', 'ALL TIME') }}
-        </center>
-    </div>
-
-    <center>
-        <button class="generatePicButton" id="downloadPicButton">Download</button>
-    </center>
-
 </body>
 
 </html>
