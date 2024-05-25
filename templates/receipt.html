@@ -108,8 +108,8 @@
         </center>
     </div>
 
-    <div style="width: 100%; height: auto; display: flex;">
-        <div style="flex: 1;">
+    <div style="display: flex;">
+        <div>
             <!-- Container for Top Tracks -->
             <div class="receiptContainerWrapper" id="tracksContainer">
                 <center>
@@ -130,11 +130,11 @@
                     <button class="generatePicButton" id="downloadPicButton">Download</button>
                 </center>
             </div>
-        <div style="flex: 1; padding: 20px;" class="customize-receipt">
+        <div class="customize-receipt">
             <h2>Customize Receipt</h2>
-            <div>
-                <label for="metric">Metric:</label>
-                <select id="metric">
+            <div class="custom-dropdown-wrapper">
+                <label for="metric">Metric</label>
+                <select id="metric" class="custom-dropdown">
                     <option value="top_tracks">Top Tracks</option>
                     <option value="top_artists">Top Artists</option>
                 </select>

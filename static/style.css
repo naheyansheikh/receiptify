@@ -1,41 +1,41 @@
-  #short_term_receipt {
-    display: none 
-  }
-
-  #downloadPicButton {
-    display: none
-  }
-
-  #medium_term_receipt {
-    display: none 
-  }
-
-  #long_term_receipt {
-    display: none 
-  }
-
-  @font-face {
-    font-family: 'MyCustomFont';
-    src: url('c9a5bc6a7c948fb0-s.p.woff2') format('woff2');
-    font-weight: inherit;
-    font-style: inherit;
+#short_term_receipt {
+  display: none 
 }
 
-  body {
-    font-family: 'MyCustomFont', sans-serif; /* Add a fallback font */
-    font-size: 14px;
-    line-height: 1.42857143;
-    color: #fff;
-    background-color: #333;
+#downloadPicButton {
+  display: none
 }
 
-  .receiptContainer {
-    background-image: url(wrinkled-paper.jpg);
-    background-position: center;
-    width: 340px;
-    filter: brightness(110%);
-    padding: 20px;
-    text-transform: uppercase;
+#medium_term_receipt {
+  display: none 
+}
+
+#long_term_receipt {
+  display: none 
+}
+
+@font-face {
+  font-family: 'MyCustomFont';
+  src: url('c9a5bc6a7c948fb0-s.p.woff2') format('woff2');
+  font-weight: inherit;
+  font-style: inherit;
+}
+
+body {
+  font-family: 'MyCustomFont', sans-serif; /* Add a fallback font */
+  font-size: 14px;
+  line-height: 1.42857143;
+  color: #fff;
+  background-color: #333;
+}
+
+.receiptContainer {
+  background-image: url(wrinkled-paper.jpg);
+  background-position: center;
+  width: 340px;
+  filter: brightness(110%);
+  padding: 20px;
+  text-transform: uppercase;
 }
 
 .artistReceiptContainer {
@@ -91,6 +91,7 @@ table {
   max-width: 100%;
   background-color: transparent;
 }
+
 table {
   border-collapse: collapse;
   border-spacing: 0;
@@ -130,7 +131,12 @@ table {
   line-height: 1.5;
 }
 
-.customize-receipt h2, .customize-receipt h3 {
+.customize-receipt h2 {
+  font-size: 40px; /* Adjust as necessary */
+  margin-bottom: 10px;
+}
+
+.customize-receipt h3 {
   font-size: 30px; /* Adjust as necessary */
   margin-bottom: 10px;
 }
@@ -146,5 +152,114 @@ table {
 }
 
 .customize-receipt p {
-  font-size: 18px; /* Adjust as necessary */
+  font-size: 21px; /* Adjust as necessary */
+}
+
+button {
+  padding: 10px 20px;
+  background-color: #007BFF;  
+  color: white;
+  border: 2px solid transparent; /* Retain the button shape on hover/focus */
+  border-radius: 8px; /* Rounded corners, typical for modern buttons */
+  font-size: 16px;
+  cursor: pointer;
+  outline: none;
+  transition: background-color 0.3s, transform 0.2s, box-shadow 0.3s;
+  text-transform: uppercase; /* Optional: makes text uppercase */
+  font-weight: bold; /* Makes font bold */
+}
+
+button:hover, button:focus {
+  background-color: #0056b3; /* Darker shade of blue for hover */
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2); /* Subtle shadow for depth */
+}
+
+button:active {
+  transform: translateY(2px); /* Slight push down effect on click */
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.15); /* Lesser shadow to simulate 'pressing' */
+}
+
+button:focus {
+  border-color: #ffcc00; /* Highlight focus for accessibility */
+}
+
+.spotifyButton:hover, .spotifyButton:focus {
+  background-color: #179c43; /* Darker shade of blue for hover */
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2); /* Subtle shadow for depth */
+}
+
+.spotifyButton:active{
+  transform: translateY(2px); /* Slight push down effect on click */
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.15); /* Lesser shadow to simulate 'pressing' */
+}
+
+.custom-dropdown-wrapper {
+  font-family: Arial, sans-serif; /* Ensures the font is consistent */
+  padding: 5px;
+  margin: 10px 0;
+}
+
+.custom-dropdown-wrapper label {
+  margin-bottom: 5px;
+  display: block;
+  color: #333;
+}
+
+.customize-receipt label[for="metric"] {
+  font-family: 'MyCustomFont';
+  font-weight: 600;
+  color:#fff;
+  font-size: 30;
+}
+
+.custom-dropdown {
+  width: 100%; /* Ensures the dropdown fills the container */
+  padding: 8px 10px;
+  border: 1px solid #ccc; /* Subtle border */
+  border-radius: 4px; /* Rounded corners */
+  background-color: #fff; /* White background */
+  font-size: 16px; /* Adequate text size for readability */
+  color: #333; /* Text color */
+  cursor: pointer; /* Indicates it's clickable */
+  appearance: none; /* Removes default system styling */
+  -webkit-appearance: none; /* Removes default styling for webkit browsers */
+  -moz-appearance: none; /* Removes default styling for Firefox */
+  position: relative; /* Needed for absolute positioning of the arrow */
+}
+
+/* Custom arrow using pseudo-elements */
+.custom-dropdown-wrapper::after {
+  content: '▼';
+  position: absolute;
+  right: 15px;
+  top: 50%;
+  transform: translateY(-50%);
+  pointer-events: none; /* Prevents the arrow from being clickable */
+  color: #333;
+}
+
+.custom-dropdown:focus {
+  border-color: #0056b3; /* Focus state */
+  outline: none; /* Removes default focus outline */
+}
+
+div[style*="display: flex;"] { /* This targets your flex container div */
+  justify-content: center; /* Centers children horizontally within the container */
+  align-items: flex-start; /* Aligns children to the top of the container */
+  width: 100%; /* Ensures the container takes up the full width */
+  gap: 20px; /* Adjust gap between the child elements */
+  margin-left: 80px;
+  margin-top: 50px;
+}
+
+
+.customize-receipt {
+padding: 20px; /* Ensures padding is not too large */
+max-width: 30%; /* Optional: ensures it doesn't get wider than 38% */
+}
+
+@media (min-width: 768px) {
+  div[style*="display: flex;"] {
+      transform: translateX(20px); /* Adjust this value as needed */
+  }
 }
