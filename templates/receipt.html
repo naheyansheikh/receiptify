@@ -84,14 +84,14 @@
             var metric = $('#metric').val();
             var explanation = '';
             if (metric === 'top_tracks') {
-                explanation = "QTY - The ranking of a track in your most played. The higher up on the list, the more played it is.<br>AMT - The length of a song.";
+                explanation = "QTY - The ranking of a track in your most played. The higher up on the list, the more played it is.<br><br>AMT - The length of a song.";
                 $('#tracksContainer').show();
                 $('#artistsContainer').hide();
                 $('#trackButtons').show();
                 $('#artistButtons').hide();
                 showContent('track_short_term_receipt');
             } else if (metric === 'top_artists') {
-                explanation = "QTY - The ranking of an artist in your most played. The higher up on the list, the more played it is.<br>AMT - The popularity of an artist, from 0-100. 100 is the most popular, and 0 is the least popular.";
+                explanation = "QTY - The ranking of an artist in your most played. The higher up on the list, the more played it is.<br><br>AMT - The popularity of an artist, from 0-100. 100 is the most popular, and 0 is the least popular.";
                 $('#artistsContainer').show();
                 $('#tracksContainer').hide();
                 $('#artistButtons').show();
@@ -158,6 +158,9 @@
             </div>
         </div>
     </div>
+    <p class="receipt-credits">
+        Made by Naheyan Sheikh
+    </p>
 </body>
 
 </html>
