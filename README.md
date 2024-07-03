@@ -3,6 +3,16 @@
 ## Overview
 Receiptify is a web application that generates stylized receipts based on a user's Spotify listening history. It provides a unique way to visualize your favorite tracks and artists over different periods such as the last month, the last six months, or all time. The application connects with Spotify, allowing users to authenticate and fetch their listening data directly through Spotify's API.
 
+## Glimpse
+**Sign in Using Spotify:**
+![Screenshot 1](public/images/readme-landing.png)
+**Authenticate Access to Account Data:**
+![Screenshot 2](public/images/readme-signin.png)
+**View Top Tracks By Peroid:**
+![Screenshot 3](public/images/readme-tracks.png)
+**View Top Artists By Peroid:**
+![Screenshot 4](public/images/readme-artists.png)
+
 ## Features
 - **Spotify Integration** 🎵: Users can log in using their Spotify account to fetch their music listening data.
 - **Customizable Timeframes** ⏳: Users can generate receipts for different periods: last month, last six months, and all time.
