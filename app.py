@@ -5,17 +5,17 @@ import time
 from time import gmtime, strftime
 import os
 
-CLIENT_ID = "d7bb3dbe470741ef9e8c126d415edd39"
-CLIENT_SECRET = "af03f95ee43d417ba1f9e82fddc2712b"
-SECRET_KEY = "lskajdaskljd"
-TOKEN_CODE = "token_info"
+CLIENT_ID = ""
+CLIENT_SECRET = ""
+SECRET_KEY = ""
+TOKEN_CODE = ""
 MEDIUM_TERM = "medium_term"
 SHORT_TERM = "short_term"
 LONG_TERM = "long_term"
 
 app = Flask(__name__)
 app.secret_key = SECRET_KEY
-app.config['SESSION_COOKIE_NAME'] = 'Naheyans Cookie'
+app.config['SESSION_COOKIE_NAME'] = 'Cookie'
 
 
 def create_spotify_oauth():
